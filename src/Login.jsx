@@ -12,11 +12,20 @@ function Login() {
 
   const setData = async (e) => {
   e.preventDefault();
+  //console.log(username,password);
   dispatch(addUser({username,password }));
-  //navigate('/home')
+ // console.log('users',users);
+  
   }
-  useEffect(()=>{console.log('users',users);
-  },[users])
+  useEffect(() => {
+    if (users.user) {
+      console.log(users);
+      navigate('/home'); 
+    } else if (users.error) {
+      console.log(users);
+      alert('Invalid user'); 
+    }
+  }, [users]);
   return (
     <>
       <div style={{
